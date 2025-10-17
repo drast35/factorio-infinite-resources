@@ -1,3 +1,5 @@
+original_resource_type = prototypes.mod_data["original-resource-type"]["data"]
+
 function fix_resources_for_surface(surface, area)
     resources = surface.find_entities_filtered{
         area = area,
@@ -6,8 +8,11 @@ function fix_resources_for_surface(surface, area)
     for _, resource in pairs(resources) do
         if resource.prototype.infinite_resource then
             -- set all new resources to exactly their normal amount
-            resource.initial_amount = resource.prototype.normal_resource_amount
-            resource.amount = resource.prototype.normal_resource_amount
+			-- only set resources which were not originally infinite to their normal amount.
+			if (not original_resource_type[resource.prototype.name]) then
+				resource.initial_amount = resource.prototype.normal_resource_amount
+				resource.amount = resource.prototype.normal_resource_amount
+			end
         end
     end
 end

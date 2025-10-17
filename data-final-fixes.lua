@@ -2,6 +2,8 @@ local blacklist = {
     "bitumen-seep",
 }
 
+local dict_to_send = {}
+
 local function make_resource_infinite(resource)
     -- make infinite
     resource.infinite = true
@@ -35,6 +37,16 @@ for _, resource in pairs(data.raw.resource) do
         log("skipping blacklisted resource " .. resource.name)
     else
         log("making " .. resource.name .. " infinite")
+		-- true if resource is infinite, false otherwise
+		dict_to_send[resource.name] = resource.infinite or false
         make_resource_infinite(resource)
     end
 end
+
+local data_to_send = {
+	type = "mod-data",
+	name = "original-resource-type",
+	data = dict_to_send
+}
+
+data:extend({data_to_send})
