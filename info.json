@@ -1,10 +1,10 @@
 {
   "name": "drast35-infinite-resources",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "title": "Infinite Resources",
   "author": "drast35",
   "homepage": "https://mods.factorio.com/mod/sonaxaton-infinite-resources",
   "description": "Makes all resources infinite.",
-  "factorio_version": "2.0",
+  "factorio_version": "2.1",
   "dependencies": []
 }
